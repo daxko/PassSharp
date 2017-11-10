@@ -22,7 +22,7 @@ var pass = new Pass {
   passTypeIdentifier = "pass.com.my.pass",
   description = "example pass",
   organizationName = "acme corp",
-  "serialNumber" = "abc123456",
+  serialNumber = "abc123456",
   teamIdentifier = "U1234567",
   icon = new Asset("path/to/icon"),
   icon2x = new Asset("path/to/icon2x"),
@@ -36,19 +36,19 @@ var pass = new Pass {
 You can now set more general fields (such as location, barcode, etc.).
 
 ```
-pass.addLocation({ longitude: 10.0000, latitude: -10.0000 });
-pass.addBarcode(new Barcode {
+pass.AddLocation({ longitude: 10.0000, latitude: -10.0000 });
+pass.AddBarcode(new Barcode {
   message = "1234",
   format = BarcodeFormat.PKBarcodeFormatPDF417
 });
-pass.addField(FieldType.Header,
+pass.AddField(FieldType.Header,
   new Field {
     key = "pass-field",
     label = "pass-field-label",
     value = "pass-field-value"
   }
 );
-pass.addField(FieldType.Primary,
+pass.AddField(FieldType.Primary,
   new Field {
     key = "pass-field2",
     label = "pass-field-label2",
