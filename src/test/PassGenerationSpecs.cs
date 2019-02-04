@@ -17,20 +17,9 @@ namespace Test
 
   public class PassWriterMock : PassWriter
   {
-
-    public static new Dictionary<string, string> GenerateManifest()
-    {
-      return PassWriter.GenerateManifest();
-    }
-
-    public static new byte[] GenerateSignature(byte[] bytes, X509Certificate2 appleCert, X509Certificate2 passCert)
-    {
-      return PassWriter.GenerateSignature(bytes, appleCert, passCert);
-    }
-
     public static new string ToJson(Pass pass)
     {
-      return PassWriter.ToJson(pass);
+      return new PassWriter().ToJson(pass);
     }
 
   }
@@ -103,7 +92,7 @@ namespace Test
 
       Because of = () => {
           var stream = new MemoryStream();
-          PassWriter.WriteToStream(pass, stream, appleCert, passCert);
+          new PassWriter().WriteToStream(pass, stream, appleCert, passCert);
           zip = new ZipArchive(stream);
       };
 
@@ -143,7 +132,7 @@ namespace Test
 
       Because of = () => {
         var stream = new MemoryStream();
-        PassWriter.WriteToStream(pass, stream, appleCert, passCert);
+        new PassWriter().WriteToStream(pass, stream, appleCert, passCert);
         zip = new ZipArchive(stream);
       };
 

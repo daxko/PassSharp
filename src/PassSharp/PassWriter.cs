@@ -19,9 +19,9 @@ namespace PassSharp
 
 	public class PassWriter
 	{
-		static ZipArchive archive;
+		private ZipArchive archive;
 
-		public static void WriteToStream(Pass pass, Stream stream, X509Certificate2 appleCert, X509Certificate2 passCert)
+		public void WriteToStream(Pass pass, Stream stream, X509Certificate2 appleCert, X509Certificate2 passCert)
 		{
 			using (archive = new ZipArchive(stream, ZipArchiveMode.Update, true)) {
 				AddEntry(@"pass.json", ToJson(pass));
@@ -84,14 +84,14 @@ namespace PassSharp
 			}
 		}
 
-		public static void WriteToFile(Pass pass, string path, X509Certificate2 appleCert, X509Certificate2 passCert)
+		public void WriteToFile(Pass pass, string path, X509Certificate2 appleCert, X509Certificate2 passCert)
 		{
 			using (var stream = new FileStream(path, FileMode.OpenOrCreate)) {
 				WriteToStream(pass, stream, appleCert, passCert);
 			}
 		}
 
-		protected static Dictionary<string, string> GenerateManifest()
+		protected Dictionary<string, string> GenerateManifest()
 		{
 			var hashManifest = new Dictionary<string, string>();
 
@@ -102,7 +102,7 @@ namespace PassSharp
 			return hashManifest;
 		}
 
-		protected static byte[] GenerateSignature(byte[] manifest, X509Certificate2 appleCert, X509Certificate2 passCert)
+		protected byte[] GenerateSignature(byte[] manifest, X509Certificate2 appleCert, X509Certificate2 passCert)
 		{
 			X509Certificate apple = DotNetUtilities.FromX509Certificate(appleCert);
 			X509Certificate cert = DotNetUtilities.FromX509Certificate(passCert);
@@ -127,31 +127,31 @@ namespace PassSharp
 			return signature;
 		}
 
-		protected static void AddEntry(string name, string value)
+		protected void AddEntry(string name, string value)
 		{
 			AddEntry(name, value.ToUtf8Bytes());
 		}
 
-		protected static void AddEntry(string name, byte[] value)
+		protected void AddEntry(string name, byte[] value)
 		{
 			using (var entry = archive.CreateEntry(name).Open()) {
 				entry.Write(value, 0, value.Length);
 			}
 		}
 
-		protected static void AddFileEntry(string name, string filename)
+		protected void AddFileEntry(string name, string filename)
 		{
 			AddEntry(name, File.ReadAllBytes(filename));
 		}
 
-		protected static void AddAssetEntry(string name, Asset asset)
+		protected void AddAssetEntry(string name, Asset asset)
 		{
 			if (null != asset) {
 				AddEntry(name, asset.asset);
 			}
 		}
 
-		protected static string CalculateSHA1(Stream stream)
+		protected string CalculateSHA1(Stream stream)
 		{
 			using (SHA1Managed managed = new SHA1Managed()) {
 				byte[] checksum = managed.ComputeHash(stream);
@@ -159,7 +159,7 @@ namespace PassSharp
 			}
 		}
 
-		protected static string ToJson(Pass pass)
+	  public string ToJson(Pass pass)
 		{
 			var properties = pass.GetType().GetProperties();
 			var jsonDict = new Dictionary<object, object>();
@@ -193,7 +193,7 @@ namespace PassSharp
 			return json;
 		}
 
-		protected static Func<FieldType, string> SerializeFieldType = (value) => {
+		protected Func<FieldType, string> SerializeFieldType = (value) => {
 			switch (value) {
 				case FieldType.Auxiliary:
 					return "auxiliaryFields";
