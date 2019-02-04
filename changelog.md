@@ -1,3 +1,7 @@
+## [2.0.0](https://github.com/daxko/PassSharp/releases/tag/v2.0.0) - 2019-02-04
+
+Update to PassWrite to use instance methods instead of static.
+
 ## [1.1.1](https://github.com/daxko/PassSharp/releases/tag/v1.1.1) - 2016-11-10
 
 * Bugfix: prevent localization values from appearing inside pass.json
