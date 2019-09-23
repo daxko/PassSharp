@@ -1,5 +1,5 @@
 language: csharp
 solution: PassSharp.sln
-dotnet: 3.0.100
+dotnet: 2.2.402
 script:
   - dotnet test /p:Configuration=Release PassSharp.sln

@@ -1,8 +1,8 @@
 ## [1.2.0](https://github.com/daxko/PassSharp/releases/tag/v1.2.0) - 2019-09-23
 
-* Now project targets .NetCore 3.0
+* Now project targets .NetStandard 2.0 (see (docs)[https://docs.microsoft.com/es-es/dotnet/standard/net-standard]))
 * Updated dependencies
-* Migrated to new .csproj 'PackageReference' format
+* Migrated to new .csproj 'PackageReference' format (from packages.json)
 
 ## [1.1.1](https://github.com/daxko/PassSharp/releases/tag/v1.1.1) - 2016-11-10
 
