@@ -1,11 +1,9 @@
 version: '1.0.{build}-{branch}'
 before_build:
-  - nuget restore
+  - dotnet msbuild /t:restore PassSharp.sln
 build:
   project: PassSharp.sln
   publish_nuget: true
-cache:
-  - packages -> **\packages.config
 deploy:
 - provider: NuGet
   api_key:

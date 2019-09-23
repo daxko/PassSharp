@@ -1,5 +1,5 @@
 language: csharp
 solution: PassSharp.sln
+dotnet: 2.2.402
 script:
-  - xbuild /p:Configuration=Release PassSharp.sln
-  - mono ./packages/Machine.Specifications.Runner.Console.0.9.2/tools/mspec-x86-clr4.exe ./src/test/bin/Release/Test.dll
+  - dotnet test /p:Configuration=Release PassSharp.sln
