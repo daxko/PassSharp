@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.2.0</Version>
+    <Version>1.2.0.0</Version>
     <Company>Daxko</Company>
     <Authors>jwilson</Authors>
     <Description>An Apple Wallet Passbook Library for NetCore projects.</Description>
