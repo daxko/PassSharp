@@ -1,4 +1,4 @@
-﻿using Machine.Specifications;
+using Machine.Specifications;
 using PassSharp;
 using PassSharp.Fields;
 using System.Collections.Generic;
@@ -39,10 +39,9 @@ namespace Test
   public class when_generating_a_pass
   {
     static Pass pass;
-    static string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-    static X509Certificate2 appleCert = new X509Certificate2(Path.Combine(path, @"fixtures/certificates/apple.cer"));
-    static X509Certificate2 passCert = new X509Certificate2(Path.Combine(path, @"fixtures/certificates/test.pfx"), "", X509KeyStorageFlags.Exportable);
-    static string imagePath = Path.Combine(path, @"fixtures/asset.png");
+    static X509Certificate2 appleCert = new X509Certificate2(Path.Combine("fixtures","certificates","apple.cer"));
+    static X509Certificate2 passCert = new X509Certificate2(Path.Combine("fixtures","certificates","test.pfx"), "", X509KeyStorageFlags.Exportable);
+    static string imagePath = Path.Combine("fixtures","asset.png");
 
     Establish context = () => {
       pass = new Pass {
